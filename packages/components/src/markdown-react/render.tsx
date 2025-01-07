@@ -128,8 +128,8 @@ export class MarkdownReactRenderer {
     return text;
   }
 
-  html(text: string) {
-    return <div dangerouslySetInnerHTML={{ __html: text }} />;
+  html(text: string, index = 0) {
+    return <div key={'markdown-html-' + index} dangerouslySetInnerHTML={{ __html: text }} />;
   }
 
   hr() {

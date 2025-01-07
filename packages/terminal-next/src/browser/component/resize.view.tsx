@@ -88,6 +88,7 @@ export default (props: IResizeViewProps) => {
 
             return (
               <ResizeItem
+                key={index}
                 index={index}
                 widget={widget}
                 wholeWidth={wholeWidth}
@@ -104,6 +105,7 @@ export default (props: IResizeViewProps) => {
         {widgets &&
           widgets.map((widget) => (
             <ResizePanelItem
+              key={widget.id}
               widget={widget}
               dynamic={shadow ? widget.dynamic : widget.shadowDynamic}
               draw={props.draw}

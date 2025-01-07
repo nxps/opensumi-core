@@ -16,10 +16,10 @@ export class MarkdownReactParser extends marked.Renderer {
   }
 
   parse(tokens: marked.Token[]): ReactNode[] {
-    return tokens.map((token) => {
+    return tokens.map((token, index) => {
       switch (token.type) {
         case 'html': {
-          return this.renderer.html(token.text);
+          return this.renderer.html(token.text, index);
         }
 
         case 'space': {
@@ -116,7 +116,7 @@ export class MarkdownReactParser extends marked.Renderer {
   ]);
 
   parseInline(tokens: marked.Token[] = []): ReactNode[] {
-    return tokens.map((token) => {
+    return tokens.map((token, index) => {
       switch (token.type) {
         case 'text': {
           const text = token.text.replace(/&(#\d+|[a-zA-Z]+);/g, (m) => this.unescapeInfo.get(m) ?? m);
@@ -148,7 +148,7 @@ export class MarkdownReactParser extends marked.Renderer {
         }
 
         case 'html': {
-          return this.renderer.html(token.text);
+          return this.renderer.html(token.text, index);
         }
 
         case 'br': {
